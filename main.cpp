@@ -24,7 +24,7 @@ int main() {
     Text hud;
     Font font;
 
-    font.loadFromFile("/home/veilbreaker/CLionProjects/SFMLPong/ARCADE_N.TTF");
+    font.loadFromFile("arcade.ttf");
     hud.setFont(font);
     hud.setCharacterSize(25);
     hud.setFillColor(Color::White);
