@@ -6,6 +6,16 @@
 
 using namespace sf;
 
+Texture batTex;
+Texture ballTex;
+RectangleShape batShape;
+RectangleShape ballShape;
+
+const int BAT_RESOURCE = 1;
+const int BALL_RESOURCE = 2;
+
+void setResourceTexture(RectangleShape rectShape, int resourceId);
+
 // Game entry point
 int main() {
     int windowWidth = 600;
@@ -24,7 +34,7 @@ int main() {
     Text hud;
     Font font;
 
-    font.loadFromFile("arcade.ttf");
+    font.loadFromFile("Fonts/arcade.ttf");
     hud.setFont(font);
     hud.setCharacterSize(25);
     hud.setFillColor(Color::White);
@@ -86,10 +96,12 @@ int main() {
         // Draw the frames
         // ***************
         // Clear everything from last frame
-        window.clear(Color(26, 128, 182, 255));
+        window.clear(Color(0, 128, 255, 255));
         // Draw bat and ball
-        window.draw(bat.getShape());
-        window.draw(ball.getShape());
+        setResourceTexture(bat.getShape(), BAT_RESOURCE);
+        setResourceTexture(ball.getShape(), BALL_RESOURCE);
+        window.draw(batShape);
+        window.draw(ballShape);
         // Draw HUD
         window.draw(hud);
         // Display it all
@@ -97,4 +109,18 @@ int main() {
     }
 
     return 0;
+}
+
+void setResourceTexture(RectangleShape rectShape, int resourceId) {
+    // Set the textures of the game
+    if (resourceId == 1) {
+        batShape = rectShape;
+        batTex.loadFromFile("Textures/bat.png");
+        batShape.setTexture(&batTex);
+    }
+    else if (resourceId == 2) {
+        ballShape = rectShape;
+        ballTex.loadFromFile("Textures/ball.png");
+        ballShape.setTexture(&ballTex);
+    }
 }
