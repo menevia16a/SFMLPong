@@ -1,0 +1,1 @@
+/usr/bin/c++   -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -g   CMakeFiles/SFMLPong.dir/main.cpp.o CMakeFiles/SFMLPong.dir/bat.cpp.o CMakeFiles/SFMLPong.dir/ball.cpp.o  -o SFMLPong 
