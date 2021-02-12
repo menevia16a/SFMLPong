@@ -19,7 +19,7 @@ float Ball::getXVelocity() { return xVelocity; }
 void Ball::reboundSides() { xVelocity = -xVelocity; }
 
 void Ball::reboundBatOrTop() {
-    position.y -= (yVelocity * 30);
+    position.y -= (yVelocity * 60);
     yVelocity = -yVelocity;
 }
 
