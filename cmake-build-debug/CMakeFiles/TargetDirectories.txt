@@ -1,3 +1,0 @@
-/home/veilbreaker/CLionProjects/SFMLPong/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/veilbreaker/CLionProjects/SFMLPong/cmake-build-debug/CMakeFiles/SFMLPong.dir
-/home/veilbreaker/CLionProjects/SFMLPong/cmake-build-debug/CMakeFiles/edit_cache.dir
