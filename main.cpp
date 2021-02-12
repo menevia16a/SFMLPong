@@ -31,13 +31,18 @@ int main() {
     Ball ball(windowWidth / 2, 1);
 
     // Create a text object with for the HUD
-    Text hud;
+    Text hudScore;
+    Text hudLives;
     Font font;
 
     font.loadFromFile("Fonts/arcade.ttf");
-    hud.setFont(font);
-    hud.setCharacterSize(25);
-    hud.setFillColor(Color::White);
+    hudScore.setFont(font);
+    hudScore.setCharacterSize(25);
+    hudScore.setFillColor(Color::White);
+    hudLives.setPosition(430, 0);
+    hudLives.setFont(font);
+    hudLives.setCharacterSize(25);
+    hudLives.setFillColor(Color::White);
 
     // Player input
     Event event;
@@ -88,10 +93,13 @@ int main() {
         ball.update();
         bat.update();
 
-        std::stringstream ss;
+        std::stringstream ssScore;
+        std::stringstream ssLives;
 
-        ss << "Score:" << score << "           Lives:" << lives;
-        hud.setString(ss.str());
+        ssScore << "Score:" << score;
+        ssLives << "Lives:" << lives;
+        hudScore.setString(ssScore.str());
+        hudLives.setString(ssLives.str());
 
         // Draw the frames
         // ***************
@@ -103,7 +111,8 @@ int main() {
         window.draw(batShape);
         window.draw(ballShape);
         // Draw HUD
-        window.draw(hud);
+        window.draw(hudScore);
+        window.draw(hudLives);
         // Display it all
         window.display();
     }
