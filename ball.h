@@ -25,7 +25,6 @@ public:
     FloatRect getPosition();
     RectangleShape getShape();
 
-    float getXVelocity();
     void reboundSides();
     void reboundBatOrTop();
     void hitBottom();

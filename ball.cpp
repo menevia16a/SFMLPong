@@ -15,7 +15,6 @@ Ball::Ball(float startX, float startY) {
 
 FloatRect Ball::getPosition() { return ballShape.getGlobalBounds(); }
 RectangleShape Ball::getShape() { return ballShape; }
-float Ball::getXVelocity() { return xVelocity; }
 void Ball::reboundSides() { xVelocity = -xVelocity; }
 
 void Ball::reboundBatOrTop() {
