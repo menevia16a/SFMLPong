@@ -14,20 +14,23 @@ RectangleShape ballShape;
 const int BAT_RESOURCE = 1;
 const int BALL_RESOURCE = 2;
 
+void runGameLoop();
 void setResourceTexture(RectangleShape rectShape, int resourceId);
 
 // Game entry point
 int main() {
+    runGameLoop();
+    return 0;
+}
+
+void runGameLoop() {
     int windowWidth = 600;
     int windowHeight = 500;
     int score = 0;
     int lives = 3;
 
-    // Render 1024x768 window
     RenderWindow window(VideoMode(windowWidth, windowHeight), "Veil's Big Fat Pong");
-    // Create the bat
     Bat bat(windowWidth / 2, windowHeight - 20);
-    // Create a ball
     Ball ball(windowWidth / 2, 1);
 
     // Create a text object with for the HUD
@@ -116,8 +119,6 @@ int main() {
         // Display it all
         window.display();
     }
-
-    return 0;
 }
 
 void setResourceTexture(RectangleShape rectShape, int resourceId) {
