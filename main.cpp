@@ -87,8 +87,10 @@ void runGameLoop() {
             score++;
         }
 
-        // Handle the ball hitting the sides
+        // Handle the ball/bat hitting the sides
         if (ball.getPosition().left < 0 || ball.getPosition().left + 10 > windowWidth) { ball.reboundSides(); }
+        if (bat.getPosition().left < 0) { bat.collisionLeftSide(); }
+        else if (bat.getPosition().left + 50 > windowWidth) { bat.collisionRightSide(); }
         // Check if ball hit bat
         if (ball.getPosition().intersects(bat.getPosition())) { ball.reboundBatOrTop(); }
 

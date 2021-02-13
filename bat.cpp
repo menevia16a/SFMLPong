@@ -14,6 +14,8 @@ Bat::Bat(float startX, float startY) {
 
 FloatRect Bat::getPosition() { return batShape.getGlobalBounds(); }
 RectangleShape Bat::getShape() { return batShape; }
+void Bat::collisionLeftSide() { position.x -= position.x; }
+void Bat::collisionRightSide() { position.x -= 0.5f; }
 void Bat::moveLeft() { position.x -= batSpeed; }
 void Bat::moveRight() { position.x += batSpeed; }
 void Bat::update() { batShape.setPosition(position); }

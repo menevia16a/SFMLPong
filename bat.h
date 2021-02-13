@@ -24,6 +24,8 @@ public:
     FloatRect getPosition();
     RectangleShape getShape();
 
+    void collisionLeftSide();
+    void collisionRightSide();
     void moveLeft();
     void moveRight();
     void update();
