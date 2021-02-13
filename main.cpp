@@ -6,10 +6,11 @@
 
 using namespace sf;
 
-Texture batTex;
-Texture ballTex;
-RectangleShape batShape;
 RectangleShape ballShape;
+RectangleShape batShape;
+Texture ballTex;
+Texture batTex;
+Event event;
 Font font;
 
 const int windowWidth = 600;
@@ -22,9 +23,34 @@ void setResourceTexture(RectangleShape rectShape, Resource resourceId);
 
 // Game entry point
 int main() {
+    RenderWindow window(VideoMode(windowWidth, windowHeight), "Main Menu - VBFP");
     font.loadFromFile("Fonts/arcade.ttf");
 
-    runGameLoop();
+    while (true) {
+        window.pollEvent(event);
+
+        if (event.type == Event::Closed) {
+            window.close();
+            break;
+        }
+
+        if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+            window.close();
+            break;
+        }
+
+        window.clear(Color(128, 128, 128, 255));
+
+        // Set up main menu
+        Text title("Veil's Big Fat Pong", font, 25);
+        title.setPosition(75, 40);
+
+        // Draw main menu
+        window.draw(title);
+        window.display();
+    }
+
+    //runGameLoop();
 
     return 0;
 }
@@ -43,14 +69,9 @@ void runGameLoop() {
 
     hudScore.setFont(font);
     hudScore.setCharacterSize(25);
-    hudScore.setFillColor(Color::White);
     hudLives.setPosition(430, 0);
     hudLives.setFont(font);
     hudLives.setCharacterSize(25);
-    hudLives.setFillColor(Color::White);
-
-    // Player input
-    Event event;
 
     while (true) {
         window.pollEvent(event);
