@@ -25,6 +25,7 @@ void setResourceTexture(RectangleShape rectShape, Resource resourceId);
 int main() {
     RenderWindow window(VideoMode(windowWidth, windowHeight), "Main Menu - VBFP");
     font.loadFromFile("Fonts/arcade.ttf");
+    window.setFramerateLimit(60); // Limit framerate to not have unneeded stress
 
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
