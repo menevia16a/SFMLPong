@@ -10,22 +10,26 @@ Texture batTex;
 Texture ballTex;
 RectangleShape batShape;
 RectangleShape ballShape;
+Font font;
 
-const int BAT_RESOURCE = 1;
-const int BALL_RESOURCE = 2;
+const int windowWidth = 600;
+const int windowHeight = 500;
+
+enum Resource { BAT_RES, BALL_RES };
 
 void runGameLoop();
-void setResourceTexture(RectangleShape rectShape, int resourceId);
+void setResourceTexture(RectangleShape rectShape, Resource resourceId);
 
 // Game entry point
 int main() {
+    font.loadFromFile("Fonts/arcade.ttf");
+
     runGameLoop();
+
     return 0;
 }
 
 void runGameLoop() {
-    int windowWidth = 600;
-    int windowHeight = 500;
     int score = 0;
     int lives = 3;
 
@@ -36,9 +40,7 @@ void runGameLoop() {
     // Create a text object with for the HUD
     Text hudScore;
     Text hudLives;
-    Font font;
 
-    font.loadFromFile("Fonts/arcade.ttf");
     hudScore.setFont(font);
     hudScore.setCharacterSize(25);
     hudScore.setFillColor(Color::White);
@@ -111,8 +113,8 @@ void runGameLoop() {
         // Clear everything from last frame
         window.clear(Color(0, 128, 255, 255));
         // Draw bat and ball
-        setResourceTexture(bat.getShape(), BAT_RESOURCE);
-        setResourceTexture(ball.getShape(), BALL_RESOURCE);
+        setResourceTexture(bat.getShape(), BAT_RES);
+        setResourceTexture(ball.getShape(), BALL_RES);
         window.draw(batShape);
         window.draw(ballShape);
         // Draw HUD
@@ -123,14 +125,14 @@ void runGameLoop() {
     }
 }
 
-void setResourceTexture(RectangleShape rectShape, int resourceId) {
+void setResourceTexture(RectangleShape rectShape, Resource resourceId) {
     // Set the textures of the game
-    if (resourceId == 1) {
+    if (resourceId == BAT_RES) {
         batShape = rectShape;
         batTex.loadFromFile("Textures/bat.png");
         batShape.setTexture(&batTex);
     }
-    else if (resourceId == 2) {
+    else if (resourceId == BALL_RES) {
         ballShape = rectShape;
         ballTex.loadFromFile("Textures/ball.png");
         ballShape.setTexture(&ballTex);
