@@ -29,12 +29,45 @@ int main() {
     batTex.loadFromFile("Textures/bat.png");
     ballTex.loadFromFile("Textures/ball.png");
     window.setFramerateLimit(60); // Limit framerate to not have unneeded stress
+    // Setup main menu buttons
+    Texture playBtnTex;
+    Sprite playBtn;
+
+    playBtnTex.loadFromFile("Textures/playbtn.png");
+    playBtn.setPosition(175, 150);
+
+    float playBtnWidth = playBtn.getLocalBounds().width;
+    float playBtnHeight = playBtn.getLocalBounds().height;
+
+    playBtn.setTexture(playBtnTex);
 
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
-            if (event.type == Event::Closed) {
-                window.close();
-                break;
+            switch (event.type) {
+                case Event::Closed:
+                    window.close();
+                    break;
+                case Event::MouseMoved:
+                    {
+                        Vector2i mousePos = Mouse::getPosition(window);
+                        Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+
+                        if (playBtn.getGlobalBounds().contains(mousePosF)) {
+                            // TODO: Change texture of button on hover
+                        }
+                    }
+                    break;
+                case Event::MouseButtonPressed:
+                    {
+                        Vector2i mousePos = Mouse::getPosition(window);
+                        Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+
+                        if (playBtn.getGlobalBounds().contains(mousePosF)) {
+                            window.close();
+                            runGameLoop();
+                        }
+                    }
+                    break;
             }
 
             if (Keyboard::isKeyPressed(Keyboard::Escape)) {
@@ -50,6 +83,7 @@ int main() {
 
             // Draw main menu
             window.draw(title);
+            window.draw(playBtn);
             window.display();
         }
     }
