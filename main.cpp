@@ -31,14 +31,12 @@ int main() {
     window.setFramerateLimit(60); // Limit framerate to not have unneeded stress
     // Setup main menu buttons
     Texture playBtnTex;
+    Texture playBtnTexHover;
     Sprite playBtn;
 
     playBtnTex.loadFromFile("Textures/playbtn.png");
+    playBtnTexHover.loadFromFile("Textures/playbtn_onhover.png");
     playBtn.setPosition(175, 150);
-
-    float playBtnWidth = playBtn.getLocalBounds().width;
-    float playBtnHeight = playBtn.getLocalBounds().height;
-
     playBtn.setTexture(playBtnTex);
 
     while (window.isOpen()) {
@@ -52,9 +50,8 @@ int main() {
                         Vector2i mousePos = Mouse::getPosition(window);
                         Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 
-                        if (playBtn.getGlobalBounds().contains(mousePosF)) {
-                            // TODO: Change texture of button on hover
-                        }
+                        if (playBtn.getGlobalBounds().contains(mousePosF)) { playBtn.setTexture(playBtnTexHover); }
+                        else { playBtn.setTexture(playBtnTex); }
                     }
                     break;
                 case Event::MouseButtonPressed:
