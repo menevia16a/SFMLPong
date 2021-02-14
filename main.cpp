@@ -8,6 +8,8 @@ using namespace sf;
 
 RectangleShape ballShape;
 RectangleShape batShape;
+Texture mainMenuBGTex;
+Texture gameBGTex;
 Texture ballTex;
 Texture batTex;
 Event event;
@@ -26,10 +28,13 @@ int main() {
     RenderWindow window(VideoMode(600, 500), "Main Menu - VBFP");
     // Load resources
     font.loadFromFile("Fonts/arcade.ttf");
+    mainMenuBGTex.loadFromFile("Textures/mmbg.png");
+    gameBGTex.loadFromFile("Textures/gamebg.png");
     batTex.loadFromFile("Textures/bat.png");
     ballTex.loadFromFile("Textures/ball.png");
     window.setFramerateLimit(60); // Limit framerate to not have unneeded stress
-    // Setup main menu buttons
+    // Setup main menu buttons and backgrounds
+    Sprite mainMenuBG(mainMenuBGTex);
     Texture playBtnTex;
     Texture playBtnTexHover;
     Sprite playBtn;
@@ -72,20 +77,19 @@ int main() {
                 break;
             }
 
-            window.clear(Color(128, 128, 128, 255));
+            window.clear(Color::White);
 
             // Set up main menu
             Text title("Veil's Big Fat Pong", font, 25);
             title.setPosition(75, 40);
 
             // Draw main menu
+            window.draw(mainMenuBG);
             window.draw(title);
             window.draw(playBtn);
             window.display();
         }
     }
-
-    //runGameLoop();
 
     return 0;
 }
@@ -98,6 +102,7 @@ void runGameLoop() {
     Bat bat(windowWidth / 2, windowHeight - 20);
     Ball ball(windowWidth / 2, 1);
 
+    Sprite gameBG(gameBGTex);
     // Create a text object with for the HUD
     Text hudScore;
     Text hudLives;
@@ -167,7 +172,8 @@ void runGameLoop() {
         // Draw the frames
         // ***************
         // Clear everything from last frame
-        window.clear(Color(0, 128, 255, 255));
+        window.clear(Color::White);
+        window.draw(gameBG);
         // Draw bat and ball
         setResourceTexture(bat.getShape(), BAT_RES);
         setResourceTexture(ball.getShape(), BALL_RES);
