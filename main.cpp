@@ -13,8 +13,8 @@ Texture batTex;
 Event event;
 Font font;
 
-const int windowWidth = 600;
-const int windowHeight = 500;
+const int windowWidth = 800;
+const int windowHeight = 700;
 
 enum Resource { BAT_RES, BALL_RES };
 
@@ -23,7 +23,7 @@ void setResourceTexture(RectangleShape rectShape, Resource resourceId);
 
 // Game entry point
 int main() {
-    RenderWindow window(VideoMode(windowWidth, windowHeight), "Main Menu - VBFP");
+    RenderWindow window(VideoMode(600, 500), "Main Menu - VBFP");
     // Load resources
     font.loadFromFile("Fonts/arcade.ttf");
     batTex.loadFromFile("Textures/bat.png");
@@ -104,7 +104,7 @@ void runGameLoop() {
 
     hudScore.setFont(font);
     hudScore.setCharacterSize(25);
-    hudLives.setPosition(430, 0);
+    hudLives.setPosition(windowWidth - 170, 0);
     hudLives.setFont(font);
     hudLives.setCharacterSize(25);
 
