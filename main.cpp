@@ -25,7 +25,7 @@ void setResourceTexture(RectangleShape rectShape, Resource resourceId);
 
 // Game entry point
 int main() {
-    RenderWindow window(VideoMode(600, 500), "Main Menu - VBFP");
+    RenderWindow window(VideoMode(600, 500), "Main Menu - VBFP", Style::Close);
     // Load resources
     font.loadFromFile("Fonts/arcade.ttf");
     mainMenuBGTex.loadFromFile("Textures/mmbg.png");
@@ -98,7 +98,7 @@ void runGameLoop() {
     int score = 0;
     int lives = 3;
 
-    RenderWindow window(VideoMode(windowWidth, windowHeight), "Veil's Big Fat Pong");
+    RenderWindow window(VideoMode(windowWidth, windowHeight), "Veil's Big Fat Pong", Style::Close);
     Bat bat(windowWidth / 2, windowHeight - 20);
     Ball ball(windowWidth / 2, 1);
 
