@@ -107,6 +107,7 @@ void runGameLoop() {
     Text hudScore;
     Text hudLives;
 
+    window.setFramerateLimit(420);
     hudScore.setFont(font);
     hudScore.setCharacterSize(25);
     hudLives.setPosition(windowWidth - 170, 0);

@@ -3,7 +3,6 @@
 //
 
 #include "ball.h"
-#include <iostream>
 
 // Constructor
 Ball::Ball(float startX, float startY) {
