@@ -158,7 +158,7 @@ void runGameLoop() {
         if (ball.getPosition().intersects(bat.getPosition())) { ball.reboundBatOrTop(); }
 
         // Call updates and set HUD
-        ball.update();
+        ball.update(score);
         bat.update();
 
         std::stringstream ssScore;

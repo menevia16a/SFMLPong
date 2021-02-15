@@ -19,6 +19,8 @@ private:
 
     float xVelocity = 0.2f;
     float yVelocity = 0.2f;
+    float ySpeed = 0;
+    float xSpeed = 0;
 public:
     Ball(float startX, float startY);
 
@@ -28,7 +30,7 @@ public:
     void reboundSides();
     void reboundBatOrTop();
     void hitBottom();
-    void update();
+    void update(int score);
 };
 
 

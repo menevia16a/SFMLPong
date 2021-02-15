@@ -3,6 +3,7 @@
 //
 
 #include "ball.h"
+#include <iostream>
 
 // Constructor
 Ball::Ball(float startX, float startY) {
@@ -18,7 +19,7 @@ RectangleShape Ball::getShape() { return ballShape; }
 void Ball::reboundSides() { xVelocity = -xVelocity; }
 
 void Ball::reboundBatOrTop() {
-    position.y -= (yVelocity * 60);
+    position.y -= (yVelocity * 40);
     yVelocity = -yVelocity;
 }
 
@@ -27,10 +28,28 @@ void Ball::hitBottom() {
     position.x = 500;
 }
 
-void Ball::update() {
+void Ball::update(int score) {
     // Update the ball position variables
-    position.y += yVelocity;
-    position.x += xVelocity;
+    if (yVelocity < 0)
+        ySpeed = -ySpeed;
+    else if (yVelocity > 0 && ySpeed < 0)
+        ySpeed *= -1;
+
+    if (xVelocity < 0)
+        xSpeed = -xSpeed;
+    else if (xVelocity > 0 && xSpeed < 0)
+        xSpeed *= -1;
+
+    position.y += yVelocity + ySpeed;
+    position.x += xVelocity + xSpeed;
+    ySpeed = 0;
+    xSpeed = 0;
+
+    // Update ball speed based on score
+    for (int i = 0; i < (score / 10); i++) {
+        ySpeed += 0.1f;
+        xSpeed += 0.1f;
+    }
 
     // Move the ball and the bat
     ballShape.setPosition(position);
