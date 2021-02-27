@@ -133,17 +133,17 @@ void runGameLoop() {
                 case Event::Closed:
                     window.close();
                     break;
-                case Event::MouseMoved:
-                {
+                case Event::MouseMoved: {
                     Vector2i mousePos = Mouse::getPosition(window);
                     Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 
-                    if (playAgainBtn.getGlobalBounds().contains(mousePosF)) { playAgainBtn.setTexture(playAgainBtnTexHover); }
+                    if (playAgainBtn.getGlobalBounds().contains(mousePosF)) {
+                        playAgainBtn.setTexture(playAgainBtnTexHover);
+                    }
                     else { playAgainBtn.setTexture(playAgainBtnTex); }
                 }
                     break;
-                case Event::MouseButtonPressed:
-                {
+                case Event::MouseButtonPressed: {
                     Vector2i mousePos = Mouse::getPosition(window);
                     Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 
@@ -155,77 +155,77 @@ void runGameLoop() {
                 }
                     break;
             }
-
-            if (Keyboard::isKeyPressed(Keyboard::Left)) { bat.moveLeft(); }
-            else if (Keyboard::isKeyPressed(Keyboard::Right)) { bat.moveRight(); }
-            else if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-                window.close();
-                break;
-            }
-
-            // Update frames
-            // *************
-            // Handle the ball hitting the bottom
-            if (ball.getPosition().top > windowHeight) {
-                // Reverse ball direction
-                ball.hitBottom();
-                // Subtract life
-                lives--;
-
-                // Reset game if 0 lives
-                if (lives < 1) { isGameOver = true; }
-            }
-
-            // Handle the ball hitting the top
-            if (ball.getPosition().top < 0) {
-                ball.reboundBatOrTop();
-                score++;
-            }
-
-            // Handle the ball/bat hitting the sides
-            if (ball.getPosition().left < 0 || ball.getPosition().left + 10 > windowWidth) { ball.reboundSides(); }
-            if (bat.getPosition().left < 0) { bat.collisionLeftSide(); }
-            else if (bat.getPosition().left + 50 > windowWidth) { bat.collisionRightSide(); }
-            // Check if ball hit bat
-            if (ball.getPosition().intersects(bat.getPosition())) { ball.reboundBatOrTop(); }
-
-            // Call updates and set HUD
-            ball.update(score);
-            bat.update();
-
-            std::stringstream ssScore;
-            std::stringstream ssLives;
-            std::stringstream ssGameOver;
-
-            ssScore << "Score:" << score;
-            ssLives << "Lives:" << lives;
-            ssGameOver << "Game Over!\n" << "Score achieved:" << score;
-
-            hudScore.setString(ssScore.str());
-            hudLives.setString(ssLives.str());
-            hudGameOver.setString(ssGameOver.str());
-
-            // Draw the frames
-            // ***************
-            // Clear everything from last frame
-            window.clear(Color::White);
-            window.draw(gameBG);
-            if (!isGameOver) {
-                // Draw bat and ball
-                setResourceTexture(bat.getShape(), BAT_RES);
-                setResourceTexture(ball.getShape(), BALL_RES);
-                window.draw(batShape);
-                window.draw(ballShape);
-                // Draw HUD
-                window.draw(hudScore);
-                window.draw(hudLives);
-            } else {
-                window.draw(hudGameOver);
-                window.draw(playAgainBtn);
-            }
-            // Display it all
-            window.display();
         }
+
+        if (Keyboard::isKeyPressed(Keyboard::Left)) { bat.moveLeft(); }
+        else if (Keyboard::isKeyPressed(Keyboard::Right)) { bat.moveRight(); }
+        else if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+            window.close();
+            break;
+        }
+
+        // Update frames
+        // *************
+        // Handle the ball hitting the bottom
+        if (ball.getPosition().top > windowHeight) {
+            // Reverse ball direction
+            ball.hitBottom();
+            // Subtract life
+            lives--;
+
+            // Reset game if 0 lives
+            if (lives < 1) { isGameOver = true; }
+        }
+
+        // Handle the ball hitting the top
+        if (ball.getPosition().top < 0) {
+            ball.reboundBatOrTop();
+            score++;
+        }
+
+        // Handle the ball/bat hitting the sides
+        if (ball.getPosition().left < 0 || ball.getPosition().left + 10 > windowWidth) { ball.reboundSides(); }
+        if (bat.getPosition().left < 0) { bat.collisionLeftSide(); }
+        else if (bat.getPosition().left + 50 > windowWidth) { bat.collisionRightSide(); }
+        // Check if ball hit bat
+        if (ball.getPosition().intersects(bat.getPosition())) { ball.reboundBatOrTop(); }
+
+        // Call updates and set HUD
+        ball.update(score);
+        bat.update();
+
+        std::stringstream ssScore;
+        std::stringstream ssLives;
+        std::stringstream ssGameOver;
+
+        ssScore << "Score:" << score;
+        ssLives << "Lives:" << lives;
+        ssGameOver << "Game Over!\n" << "Score achieved:" << score;
+
+        hudScore.setString(ssScore.str());
+        hudLives.setString(ssLives.str());
+        hudGameOver.setString(ssGameOver.str());
+
+        // Draw the frames
+        // ***************
+        // Clear everything from last frame
+        window.clear(Color::White);
+        window.draw(gameBG);
+        if (!isGameOver) {
+            // Draw bat and ball
+            setResourceTexture(bat.getShape(), BAT_RES);
+            setResourceTexture(ball.getShape(), BALL_RES);
+            window.draw(batShape);
+            window.draw(ballShape);
+            // Draw HUD
+            window.draw(hudScore);
+            window.draw(hudLives);
+        } else {
+            window.draw(hudGameOver);
+            window.draw(playAgainBtn);
+        }
+        // Display it all
+        window.display();
     }
 }
 
