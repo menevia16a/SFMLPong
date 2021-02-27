@@ -45,7 +45,7 @@ void Ball::update(int score) {
     xSpeed = 0;
 
     // Update ball speed based on score
-    for (int i = 0; i < (score / 10); i++) {
+    for (int i = 0; i < (score / 5); i++) {
         ySpeed += 0.1f;
         xSpeed += 0.1f;
     }
