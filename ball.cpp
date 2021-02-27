@@ -18,7 +18,7 @@ RectangleShape Ball::getShape() { return ballShape; }
 void Ball::reboundSides() { xVelocity = -xVelocity; }
 
 void Ball::reboundBatOrTop() {
-    position.y -= (yVelocity * 40);
+    position.y -= (yVelocity * 30);
     yVelocity = -yVelocity;
 }
 
@@ -46,8 +46,8 @@ void Ball::update(int score) {
 
     // Update ball speed based on score
     for (int i = 0; i < (score / 5); i++) {
-        ySpeed += 0.1f;
-        xSpeed += 0.1f;
+        ySpeed += 0.05f;
+        xSpeed += 0.05f;
     }
 
     // Move the ball and the bat
