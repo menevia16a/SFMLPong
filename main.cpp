@@ -180,7 +180,8 @@ void runGameLoop() {
         // Handle the ball hitting the top
         if (ball.getPosition().top < 0) {
             ball.reboundBatOrTop();
-            score++;
+
+            if (!isGameOver) { score++; }
         }
 
         // Handle the ball/bat hitting the sides
